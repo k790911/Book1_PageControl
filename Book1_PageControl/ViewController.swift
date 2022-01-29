@@ -8,12 +8,30 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var images = ["1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", "6.JPG"]
 
+    @IBOutlet var currentPageNo: UILabel!
+    @IBOutlet var imgView: UIImageView!
+    @IBOutlet var pageControl: UIPageControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        pageControl.numberOfPages = images.count
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = UIColor.green
+        pageControl.currentPageIndicatorTintColor = UIColor.red
+        
+        imgView.image = UIImage(named: images[0])
+        currentPageNo.text = "0"
     }
-
-
+    
+    @IBAction func pageChange(_ sender: UIPageControl) {
+        imgView.image = UIImage(named: images[pageControl.currentPage])
+        currentPageNo.text = String(pageControl.currentPage)
+    }
+    
 }
 
